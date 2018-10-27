@@ -63,14 +63,7 @@ def apigw_event():
     }
 
 
-def test_lambda_handler(apigw_event, mocker):
-
-    requests_response_mock = namedtuple("response", ["text"])
-    requests_response_mock.text = "1.1.1.1\n"
-
-    request_mock = mocker.patch.object(
-        app.requests, 'get', side_effect=requests_response_mock)
-
+def test_lambda_handler(apigw_event):
     ret = app.lambda_handler(apigw_event, "")
     assert ret["statusCode"] == 200
 
