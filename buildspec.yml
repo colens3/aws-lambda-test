@@ -9,4 +9,7 @@ phases:
   build:
     commands:
       - python -m pytest tests/ -v
+  postbuild:
+    commands:
+      - sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket aws-sam-lambda
     
