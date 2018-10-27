@@ -6,4 +6,4 @@ phases:
       - pip install -r requirements.txt
   build:
     commands:
-      - python tests/test_handler.py
+      - python tests/unit/test_handler.py
