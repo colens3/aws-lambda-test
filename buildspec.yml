@@ -6,10 +6,13 @@ phases:
       - pip install -r requirements.txt
       - pip install -r requirements.txt -t hello_world/build/
       - cp hello_world/*.py hello_world/build/
+      - aws cloudformation package --template-file template.yaml --kms-key-id 119f81b2-b2d3-450e-9fa8-865ed6a8e92d --s3-bucket aws-sam-lambda 
+                                   --output-template-file outputSamTemplate.yaml
   build:
     commands:
       - python -m pytest tests/ -v
-  post_build:
-    commands:
-      - sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket aws-sam-lambda
-    
+artifacts:
+  type: zip
+  files:
+    - template.yaml
+    - outputSamTemplate.yaml
