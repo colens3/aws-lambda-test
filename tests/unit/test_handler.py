@@ -6,7 +6,6 @@ import pytest
 from hello_world import app
 
 
-# Fixture method
 @pytest.fixture()
 def apigw_event():
     """ Generates API GW Event"""
